@@ -153,11 +153,27 @@ public class Biblioteca {
 	 * - Si la categoría no existe o no tiene libros, retorna null, no lanza
 	 *   excepción.
 	 */
+	
 	public Libro libroMasAntiguoDeCategoria(String categoria) {
-		// TODO: reemplazar esta línea por la lógica descrita arriba.
-		throw new UnsupportedOperationException("TODO: completar libroMasAntiguoDeCategoria() en Biblioteca");
-	}
+		List<Libro> librosCategoria = new ArrayList<>();
 
+		for (Libro libro : libros) {
+			if (libro.getCategoria().equals(categoria)) {
+				librosCategoria.add(libro);
+			}
+		}
+
+		Libro masAntiguo = null;
+
+		for (Libro libro : librosCategoria) {
+			if (masAntiguo == null || libro.getAnioPublicacion() < masAntiguo.getAnioPublicacion()) {
+				masAntiguo = libro;
+			}
+		}
+
+		return masAntiguo;
+	}
+	
 	/**
 	 * RETO OPCIONAL (10 pts extra): completar prestarPrimerDisponibleDeCategoria().
 	 * <p>
