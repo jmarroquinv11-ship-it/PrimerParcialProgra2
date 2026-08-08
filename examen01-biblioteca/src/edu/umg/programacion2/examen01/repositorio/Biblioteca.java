@@ -88,8 +88,15 @@ public class Biblioteca {
 	 * - Si el catálogo está vacío, retorna un Map vacío (no null).
 	 */
 	public Map<String, Integer> contarLibrosPorCategoria() {
-		// TODO: reemplazar esta línea por la lógica descrita arriba.
-		throw new UnsupportedOperationException("TODO: completar contarLibrosPorCategoria() en Biblioteca");
+		Map<String, Integer> conteo = new HashMap<>();
+
+		for (Libro libro : libros) {
+			String categoria = libro.getCategoria();
+			int cantidadActual = conteo.getOrDefault(categoria, 0);
+			conteo.put(categoria, cantidadActual + 1);
+		}
+
+		return conteo;
 	}
 
 	/**
@@ -105,17 +112,23 @@ public class Biblioteca {
 	 * <p>
 	 * Pista: usa libro.getTitulo().toLowerCase().contains(texto.toLowerCase())
 	 * dentro de un for-each, y agrega las coincidencias a una lista nueva.
-	 * <p>
+	 * <p>....
 	 * Criterios de evaluación:
 	 * - No modifica la lista original (libros).
 	 * - La búsqueda ignora mayúsculas/minúsculas.
 	 * - Si no hay coincidencias, retorna una lista vacía (no null).
 	 */
 	public List<Libro> buscarPorTituloParcial(String texto) {
-		// TODO: reemplazar esta línea por la lógica descrita arriba.
-		throw new UnsupportedOperationException("TODO: completar buscarPorTituloParcial() en Biblioteca");
-	}
+		List<Libro> resultados = new ArrayList<>();
 
+		for (Libro libro : libros) {
+			if (libro.getTitulo().toLowerCase().contains(texto.toLowerCase())) {
+				resultados.add(libro);
+			}
+		}
+
+		return resultados;
+	}
 	/**
 	 * PREGUNTA PRÁCTICA 3 (20 pts): completar libroMasAntiguoDeCategoria().
 	 * <p>
